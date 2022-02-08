@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {
   Route,
   Routes,
@@ -40,9 +41,20 @@ import Wallet from "./pages/Wallet";
 function App() {
   const navigate = useNavigate();
 
+  const [address, setAddress] = useState(null);
+  console.log("address", address);
+
   return (
     <>
-      <Connect />
+      <Connect 
+        address={address} 
+        onConnect={(address) => {
+          setAddress(address);
+      }}
+        onDisconnect={() => {
+          setAddress(null);
+        }}
+      />
       <Page>
         <Menu
           left="0"
